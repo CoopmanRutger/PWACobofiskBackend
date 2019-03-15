@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
-use App\Form;
-class FormSeeder extends Seeder
+use App\ApplicationForm;
+class ApplicationFormSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,21 +11,22 @@ class FormSeeder extends Seeder
      */
     public function run()
     {
+          
         for($i = 1; $i <= 10; $i++) { 
-            $status = array("receive", "read", "approved", "refused", "in operation", "sent", "delivered");
+            $status = array("receive", "read", "approved", "refused");
             $rand_status = array_rand($status, 2);
+
+            $reason = array("1", "2", "3");
+            $rand_reason = array_rand($reason, 2);
             
-            $choice = array("order form", "delivery note", "application form");
-            $rand_choice = array_rand($choice, 2);
-        
-            Form::Create([
+            ApplicationForm::Create([
                 'storeID' => rand(0,50),
-                'choice' => $choice[$rand_choice[0]],
                 'status' =>  $status[$rand_status[0]],
+                'reason' =>  $reason[$rand_reason[0]],
                 'extra' => Str::random(30),
                 'productID' => rand(0,50),
                 'amount' => rand(0,100),
-                ]);
-            }   
+            ]);
+        }   
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use App\Employee;
+use App\Form;
 use Illuminate\Http\Request;
 
 class ApiController
@@ -15,6 +17,8 @@ class ApiController
     public function index()
     {
         echo $data = Product::all();
+        // echo $data2 = Form::all(); 
+        // echo $data3 = Employee::all();
     }
 
     /**
