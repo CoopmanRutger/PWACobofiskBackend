@@ -11,7 +11,6 @@ class ApplicationFormSeeder extends Seeder
      */
     public function run()
     {
-          
         for($i = 1; $i <= 10; $i++) { 
             $status = array("receive", "read", "approved", "refused");
             $rand_status = array_rand($status, 2);

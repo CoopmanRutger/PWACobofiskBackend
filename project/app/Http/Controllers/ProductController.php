@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Product;
-use App\Employee;
-use App\OrderForm;
-use App\ApplicationForm;
-use App\DeliveryNote;
 use Illuminate\Http\Request;
 
-class ApiController
- extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +13,7 @@ class ApiController
      */
     public function index()
     {
-       
-        
-        echo $data4 = ApplicationForm::all();
-        
+        echo $data = Product::all();
     }
 
     /**
@@ -54,7 +46,6 @@ class ApiController
     public function show($id)
     {
         echo $data = Product::findOrFail($id);
-        // return view('user.profile', ['user' => User::findOrFail($id)]);
     }
 
     /**

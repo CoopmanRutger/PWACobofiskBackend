@@ -16,4 +16,9 @@ Route::get('/', function () {
 });
 Route::resources([
     'api' => 'ApiController',
+    'product' => 'ProductController',
+    'employee' => 'EmployeeController',
+    'deliveryNote' => 'DeliveryNoteController',
+    'orderForm' => 'OrderFormController',
+    'applicationForm' => 'ApplicationFormController',
     ]);
