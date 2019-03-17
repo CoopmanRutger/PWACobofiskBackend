@@ -14,11 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resources([
-    'api' => 'ApiController',
-    'product' => 'ProductController',
-    'employee' => 'EmployeeController',
-    'deliveryNote' => 'DeliveryNoteController',
-    'orderForm' => 'OrderFormController',
-    'applicationForm' => 'ApplicationFormController',
-    ]);
