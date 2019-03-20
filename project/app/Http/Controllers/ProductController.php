@@ -35,7 +35,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+
+
+        $product->id = $request->input("id");
+        $product->amount = $request->input("amount");
+
+        $product->save();
     }
 
     /**
@@ -69,7 +75,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $product = store($id);
+
+        $product->id = $request->input("id");
+        $product->amount = $request->input("amount");
+
+        $product->save();
     }
 
     /**

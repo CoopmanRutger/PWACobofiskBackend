@@ -26,27 +26,19 @@ class ApplicationFormController extends Controller
      */
     public function store(Request $request)
     {
-        $storeId = $request->input("storeId");
-        $status = $request->input("status");
-        $reason = $request->input("reason");
-        $extra = $request->input("extra");
-        $productId = $request->input("productId");
-        $amount = $request->input("amount");
-        $employeeId = $request->input("employeeId");
-        
         //for ke?
+        $applicationForm = new ApplicationForm;
 
-        ApplicationForm::Create([
-            'storeId' => $storeId,
-            'status' =>  $status,
-            'reason' =>  $reason,
-            'extra' => $extra,
-            'status' => "In aanvraag",
-            'productId' => $productId,
-            'amount' => $amount,
-            'employeeId' => $employeeId,
-        ]);
+        $applicationForm->storeId =  $request->input("storeId"),
+        $applicationForm->status =  $request->input("status"),
+        $applicationForm->reason =  $request->input("reason"),
+        $applicationForm->extra = $request->input("extra"),
+        $applicationForm->status = "In aanvraag",
+        $applicationForm->productId = $request->input("productId"),
+        $applicationForm->amount = $request->input("amount"),
+        $applicationForm->employeeId = $request->input("employeeId"),
 
+        $applicationForm->save();
     }
 
     /**
