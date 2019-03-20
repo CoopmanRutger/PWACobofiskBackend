@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ApplicationForm;
+use App\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class ApplicationFormController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,17 @@ class ApplicationFormController extends Controller
      */
     public function index()
     {
-        return ApplicationForm::all();
+        return Store::all();
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -26,29 +36,9 @@ class ApplicationFormController extends Controller
      */
     public function store(Request $request)
     {
-        $storeId = $request->input("storeId");
-        $status = $request->input("status");
-        $reason = $request->input("reason");
-        $extra = $request->input("extra");
-        $productId = $request->input("productId");
-        $amount = $request->input("amount");
-        $employeeId = $request->input("employeeId");
-        
-        //for ke?
-
-        ApplicationForm::Create([
-            'storeId' => $storeId,
-            'status' =>  $status,
-            'reason' =>  $reason,
-            'extra' => $extra,
-            'status' => "In aanvraag",
-            'productId' => $productId,
-            'amount' => $amount,
-            'employeeId' => $employeeId,
-        ]);
-
+        //
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -57,7 +47,7 @@ class ApplicationFormController extends Controller
      */
     public function show($id)
     {
-        return DB::table('applicationForms')->where('storeId', $id)->get();
+        return Store::findOrFail($id);
     }
 
     /**

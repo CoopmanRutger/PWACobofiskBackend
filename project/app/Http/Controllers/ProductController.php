@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo $data = Product::all();
+        return $data = Product::all();
     }
 
     /**
@@ -45,7 +46,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        echo $data = Product::findOrFail($id);
+        return Product::findOrFail($id);
     }
 
     /**

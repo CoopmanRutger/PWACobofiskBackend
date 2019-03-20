@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DeliveryNote extends Model
+class Store extends Model
 {
-    protected $table = 'deliveryNotes';
     protected $guarded = [];
     protected $casts = [];
 }

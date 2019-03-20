@@ -13,12 +13,12 @@ class CreateDeliveryNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('deliveryNote', function (Blueprint $table) {
+        Schema::create('deliveryNotes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('storeID');         
+            $table->integer('storeId');         
             $table->string('status');
             $table->text('extra');            
-            $table->integer('productID');
+            $table->integer('productId');
             $table->integer('amount');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateDeliveryNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deliveryNote');
+        Schema::dropIfExists('deliveryNotes');
     }
 }

@@ -19,12 +19,13 @@ class ApplicationFormSeeder extends Seeder
             $rand_reason = array_rand($reason, 2);
             
             ApplicationForm::Create([
-                'storeID' => rand(0,50),
+                'storeId' => rand(1,5),
                 'status' =>  $status[$rand_status[0]],
                 'reason' =>  $reason[$rand_reason[0]],
                 'extra' => Str::random(30),
-                'productID' => rand(0,50),
+                'productId' => rand(0,50),
                 'amount' => rand(0,100),
+                'employeeId' => rand(1,10),
             ]);
         }   
     }

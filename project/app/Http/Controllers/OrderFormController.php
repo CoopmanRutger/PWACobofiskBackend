@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\OrderForm;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class OrderFormController extends Controller
@@ -14,7 +15,7 @@ class OrderFormController extends Controller
      */
     public function index()
     {
-        echo $data2 = OrderForm::all(); 
+        return OrderForm::all(); 
     }
 
     /**
@@ -35,7 +36,22 @@ class OrderFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeId = $request->input("storeId");
+        $status = $request->input("status");
+        $extra = $request->input("extra");
+        $productId = $request->input("productId");
+        $amount = $request->input("amount");
+        
+        // for ke
+
+        OrderForm::Create([
+            'storeId' => $storeId,
+            'status' =>  $status,
+            'extra' => $extra,
+            'productId' => $productId,
+            'amount' => $amount,
+            ]);
+        }
     }
 
     /**
@@ -46,7 +62,7 @@ class OrderFormController extends Controller
      */
     public function show($id)
     {
-        echo $data = OrderForm::findOrFail($id);
+        return OrderForm::findOrFail($id);
     }
 
     /**

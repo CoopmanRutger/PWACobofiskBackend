@@ -15,10 +15,10 @@ class CreateOrderFormsTable extends Migration
     {
         Schema::create('orderForms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('storeID');          
+            $table->integer('storeId');          
             $table->string('status');
             $table->text('extra');            
-            $table->integer('productID');
+            $table->integer('productId');
             $table->integer('amount');
             $table->timestamps();
         });

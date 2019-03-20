@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DeliveryNote;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class DeliveryNoteController extends Controller
@@ -14,7 +15,7 @@ class DeliveryNoteController extends Controller
      */
     public function index()
     {
-        echo $data5 = DeliveryNote::all();
+        return DeliveryNote::all();
     }
 
     /**
@@ -35,7 +36,21 @@ class DeliveryNoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeId = $request->input("storeId");
+        $status = $request->input("status");
+        $extra = $request->input("extra");
+        $productId = $request->input("productId");
+        $amount = $request->input("amount");
+
+        // for ke
+
+        DeliveryNote::Create([
+            'storeId' => $storeId,
+            'status' =>  $status,
+            'extra' => $extra,
+            'productId' => $productId,
+            'amount' => $amount,
+            ]);
     }
 
     /**
@@ -46,8 +61,7 @@ class DeliveryNoteController extends Controller
      */
     public function show($id)
     {
-        echo $data = DeliveryNote::findOrFail($id);
-
+        return DB::table('deliveryNotes')->where('storeId', $id)->get();
     }
 
     /**
@@ -81,6 +95,6 @@ class DeliveryNoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('deliveryNotes')->where('id', $id);
     }
 }
