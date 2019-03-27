@@ -6,24 +6,7 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {/**
-     * register
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function register(Request $request)
-    {
-        $user = User::create([
-            'name' => $request->email,
-            'email'    => $request->email,
-            'password' => $request->password,
-        ]);
-
-        $token = auth('api')->login($user);
-
-        return $this->respondWithToken($token);
-    }
-
+    
     /**
      * login
      *
@@ -31,7 +14,7 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['username', 'password']);
 
         if (! $token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);

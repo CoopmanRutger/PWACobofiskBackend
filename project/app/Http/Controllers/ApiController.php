@@ -19,8 +19,7 @@ class ApiController
     public function index()
     {
        
-        
-        echo $data4 = ApplicationForm::all();
+        return 'GO to api/product'
         
     }
 
@@ -53,8 +52,7 @@ class ApiController
      */
     public function show($id)
     {
-        echo $data = Product::findOrFail($id);
-        // return view('user.profile', ['user' => User::findOrFail($id)]);
+        //
     }
 
     /**

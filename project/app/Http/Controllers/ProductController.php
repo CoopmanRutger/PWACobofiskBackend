@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo $data = Product::all();
+        return $data = Product::all();
     }
 
     /**
@@ -34,7 +35,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+
+
+        $product->id = $request->input("id");
+        $product->amount = $request->input("amount");
+        $product->storeId = $request->input("storeId");
+
+        $product->save();
     }
 
     /**
@@ -45,7 +53,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        echo $data = Product::findOrFail($id);
+        return Product::findOrFail($id);
     }
 
     /**
@@ -68,7 +76,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $product = store($id);
+
+        $product->id = $request->input("id");
+        $product->amount = $request->input("amount");
+        $product->storeId = $request->input("storeId");
+
+        $product->save();
+
+        index();
     }
 
     /**

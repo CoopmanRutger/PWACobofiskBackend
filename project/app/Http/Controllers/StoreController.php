@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\OrderForm;
+use App\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
-class OrderFormController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class OrderFormController extends Controller
      */
     public function index()
     {
-        return OrderForm::all(); 
+        return Store::all();
     }
 
     /**
@@ -36,24 +36,9 @@ class OrderFormController extends Controller
      */
     public function store(Request $request)
     {
-        $storeId = $request->input("storeId");
-        $status = $request->input("status");
-        $extra = $request->input("extra");
-        $productId = $request->input("productId");
-        $amount = $request->input("amount");
-        
-        // for ke
-
-        OrderForm::Create([
-            'storeId' => $storeId,
-            'status' =>  $status,
-            'extra' => $extra,
-            'productId' => $productId,
-            'amount' => $amount,
-            ]);
-        }
+        //
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -62,7 +47,7 @@ class OrderFormController extends Controller
      */
     public function show($id)
     {
-        return OrderForm::findOrFail($id);
+        return Store::findOrFail($id);
     }
 
     /**
@@ -97,5 +82,20 @@ class OrderFormController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function products($id)
+    {
+        return DB::table('products')->where('storeId', $id)->get();
+    }
+
+    public function employees($id)
+    {
+        return DB::table('employees')->where('storeId', $id)->get();
+    }
+
+    public function deliverynotes($id)
+    {
+        return DB::table('deliveryNotes')->where('storeId', $id)->orderBy('date')->get();
     }
 }

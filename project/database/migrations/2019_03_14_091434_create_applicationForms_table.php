@@ -15,12 +15,13 @@ class CreateApplicationFormsTable extends Migration
     {
         Schema::create('applicationForms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('storeID');          
+            $table->integer('storeId');          
             $table->string('status');
             $table->string('reason');
             $table->text('extra');            
-            $table->integer('productID');
+            $table->integer('productId');
             $table->integer('amount');
+            $table->string('employeeId');
             $table->timestamps();
         });
     }
