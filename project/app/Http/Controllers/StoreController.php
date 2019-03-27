@@ -83,4 +83,19 @@ class StoreController extends Controller
     {
         //
     }
+
+    public function products($id)
+    {
+        return DB::table('products')->where('storeId', $id)->get();
+    }
+
+    public function employees($id)
+    {
+        return DB::table('employees')->where('storeId', $id)->get();
+    }
+
+    public function deliverynotes($id)
+    {
+        return DB::table('deliveryNotes')->where('storeId', $id)->orderBy('date')->get();
+    }
 }

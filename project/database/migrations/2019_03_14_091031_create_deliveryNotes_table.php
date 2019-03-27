@@ -20,6 +20,7 @@ class CreateDeliveryNotesTable extends Migration
             $table->text('extra');            
             $table->integer('productId');
             $table->integer('amount');
+            $table->string('date');
             $table->timestamps();
         });
     }

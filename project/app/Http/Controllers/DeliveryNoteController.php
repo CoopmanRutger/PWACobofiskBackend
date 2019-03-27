@@ -42,6 +42,9 @@ class DeliveryNoteController extends Controller
         $productId = $request->input("productId");
         $amount = $request->input("amount");
 
+        $mytime = Carbon\Carbon::now();
+        echo $mytime;
+        echo $mytime->toDateTimeString();
         // for ke
 
         DeliveryNote::Create([
@@ -50,6 +53,7 @@ class DeliveryNoteController extends Controller
             'extra' => $extra,
             'productId' => $productId,
             'amount' => $amount,
+            'date' => randomDate(),
             ]);
     }
 
@@ -96,5 +100,31 @@ class DeliveryNoteController extends Controller
     public function destroy($id)
     {
         DB::table('deliveryNotes')->where('id', $id);
+    }
+
+
+    private function randomDate() 
+    {
+        $YearDate = date('Y');
+        $monthDate = date('m');
+        $dayDate = date('d');
+        $randomNumber = rand(1,13);
+
+        if (($randomNumber + $dayDate) > 29){
+            $dayDate = $randomNumber +$dayDate - 29;
+            $monthDate ++;
+
+            if ($monthDate < 10){
+                $monthDate = '0' . $monthDate;
+            }
+        }else {
+            $dayDate += $randomNumber;
+        }
+
+        if ($dayDate < 10){
+            $dayDate = '0' . $dayDate;
+        }
+    
+        return $YearDate . '-' . $monthDate . '-' . $dayDate;
     }
 }

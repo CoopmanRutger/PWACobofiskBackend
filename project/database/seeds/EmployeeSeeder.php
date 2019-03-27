@@ -12,7 +12,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 10; $i++) { 
+        for($i = 1; $i <= 50; $i++) { 
             $function = array("standaard", "manager", "store manager", "information manager", "salesman", "Analist", "CEO");
             $rand_function = array_rand($function, 2);
             

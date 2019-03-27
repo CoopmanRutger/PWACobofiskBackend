@@ -26,11 +26,15 @@ Route::post('/logout', 'AuthController@logout')->name('logout');
 // // Route::middleware('jwt.auth')->get('/product', 'ProductController@index')->name('api-product.index');
 
 Route::resources([
-    'product' => 'ProductController',
-    'employee' => 'EmployeeController',
-    'deliverynote' => 'DeliveryNoteController',
-    'orderform' => 'OrderFormController',
-    'applicationform' => 'ApplicationFormController',
-    'store' => 'StoreController',
+    'products' => 'ProductController',
+    'employees' => 'EmployeeController',
+    'deliverynotes' => 'DeliveryNoteController',
+    'orderforms' => 'OrderFormController',
+    'applicationforms' => 'ApplicationFormController',
+    'stores' => 'StoreController',
     // 'auth' => "AuthController",
     ]);
+
+Route::get('stores/products/{id}','StoreController@products');
+Route::get('stores/employees/{id}','StoreController@employees');
+Route::get('stores/deliverynotes/{id}','StoreController@deliverynotes');

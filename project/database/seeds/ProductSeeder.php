@@ -11,7 +11,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 15; $i++) { 
+        for($i = 1; $i <= 150; $i++) { 
             $size = array("XS", "S", "M", "L", "XL");
             $rand_size = array_rand($size, 2);
             
@@ -27,6 +27,7 @@ class ProductSeeder extends Seeder
         
         
             Product::Create([
+                'storeId' => rand(1,5),
                 'name' => $name[$rand_name[0]],
                 'brand' => $merk[$rand_merk[0]],
                 'size' =>  $size[$rand_size[0]],

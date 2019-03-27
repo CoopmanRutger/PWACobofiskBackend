@@ -40,6 +40,7 @@ class ProductController extends Controller
 
         $product->id = $request->input("id");
         $product->amount = $request->input("amount");
+        $product->storeId = $request->input("storeId");
 
         $product->save();
     }
@@ -80,8 +81,11 @@ class ProductController extends Controller
 
         $product->id = $request->input("id");
         $product->amount = $request->input("amount");
+        $product->storeId = $request->input("storeId");
 
         $product->save();
+
+        index();
     }
 
     /**
