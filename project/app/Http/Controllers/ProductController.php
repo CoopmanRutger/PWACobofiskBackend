@@ -98,4 +98,12 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function orderform($id)
+    {
+        return DB::table('products')
+            ->join('orderForms','orderForms.productId','=','products.id')
+            ->where('products.storeId', $id)
+            ->get();
+    }
 }

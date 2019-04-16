@@ -36,5 +36,6 @@ Route::resources([
     ]);
 
 Route::get('stores/products/{id}','StoreController@products');
+Route::get('products/orderform/{id}','ProductController@orderform');
 Route::get('stores/employees/{id}','StoreController@employees');
 Route::get('stores/deliverynotes/{id}','StoreController@deliverynotes');
