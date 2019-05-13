@@ -29,14 +29,14 @@ class ApplicationFormController extends Controller
         //for ke?
         $applicationForm = new ApplicationForm;
 
-        $applicationForm->storeId =  $request->input("storeId"),
-        $applicationForm->status =  $request->input("status"),
-        $applicationForm->reason =  $request->input("reason"),
-        $applicationForm->extra = $request->input("extra"),
-        $applicationForm->status = "In aanvraag",
-        $applicationForm->productId = $request->input("productId"),
-        $applicationForm->amount = $request->input("amount"),
-        $applicationForm->employeeId = $request->input("employeeId"),
+        // $applicationForm->storeId =  $request->input("storeId"),
+        // $applicationForm->status =  $request->input("status"),
+        // $applicationForm->reason =  $request->input("reason"),
+        // $applicationForm->extra = $request->input("extra"),
+        // $applicationForm->status = "In aanvraag",
+        // $applicationForm->productId = $request->input("productId"),
+        // $applicationForm->amount = $request->input("amount"),
+        // $applicationForm->employeeId = $request->input("employeeId"),
 
         $applicationForm->save();
     }

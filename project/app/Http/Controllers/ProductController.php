@@ -76,16 +76,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $product = Product::find($id);
 
-        $product = store($id);
+        $choice = $request->input("choice");
+        $amount = $request->input("amount");
+        $productAmount = $product->amountStock;
 
-        $product->id = $request->input("id");
-        $product->amount = $request->input("amount");
-        $product->storeId = $request->input("storeId");
-
+        if ($choice === 'Add') {
+            echo 'add';
+            $product->amountStock = $productAmount + $amount;
+        }
+        if ($choice === 'Del') {
+            $product->amountStock = $productAmount - $amount;
+        }
         $product->save();
-
-        index();
     }
 
     /**
