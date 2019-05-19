@@ -7,62 +7,15 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    // public $successStatus = 200;
-    // /** 
-    //      * login api 
-    //      * 
-    //      * @return \Illuminate\Http\Response 
-    //      */ 
-    //     public function login(){ 
-    //         if(Auth::attempt(['username' => request('username'), 'password' => request('password')])){ 
-    //             $user = Auth::user(); 
-    //             return response()->json(['success' => $success], $this-> successStatus); 
-    //         } 
-    //         else{ 
-    //             return response()->json(['error'=>'Unauthorised'], 401); 
-    //         } 
-    //     }
-    //     public function logout(){ 
-    //     }
-
-    // /** 
-    //      * details api 
-    //      * 
-    //      * @return \Illuminate\Http\Response 
-    //      */ 
-    //     public function details() 
-    //     { 
-    //         $user = Auth::user(); 
-    //         return response()->json(['success' => $user], $this-> successStatus); 
-    //     } 
-    // }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return Employee::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function store(Request $request)
     {
@@ -83,23 +36,11 @@ class EmployeeController extends Controller
             ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return Employee::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -117,14 +58,34 @@ class EmployeeController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request, Response $response) {
+
+        echo $request;
+
+        // $username = $request->input("username");
+        // $password = $request->input("password");
+
+        // if ($username != "" && $password != ""){
+
+        //     $employee = Employee::where('username', '=', $username)->first();
+            
+        //     if ($employee->password == $password) {
+        //         $response = $employee->id
+        //         return $response;
+        //     }
+        // }
+        // $response = 0;
+        // return $response;
+    }
+    
+    
+    public function logout(Request $request)
+    {
+        return null;
     }
 }

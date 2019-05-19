@@ -82,14 +82,14 @@ class ProductController extends Controller
         $amount = $request->input("amount");
         $productAmount = $product->amountStock;
 
-        if ($choice === 'Add') {
-            echo 'add';
+        if ($choice === 'Add' && $amount > 0) {
             $product->amountStock = $productAmount + $amount;
         }
-        if ($choice === 'Del') {
+        if ($choice === 'Del' && $amount > 0) {
             $product->amountStock = $productAmount - $amount;
         }
         $product->save();
+
     }
 
     /**
@@ -107,7 +107,7 @@ class ProductController extends Controller
     {
         return DB::table('products')
             ->join('orderForms','orderForms.productId','=','products.id')
-            ->where('products.storeId', $id)
+            ->where('orderForms.storeId', $id)
             ->get();
     }
 }

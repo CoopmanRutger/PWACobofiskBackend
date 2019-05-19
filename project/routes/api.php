@@ -18,14 +18,8 @@ use Illuminate\Http\Request;
 // });
 
 
-// -- jwt auth
-Route::post('/login', 'EmployeeController@login')->name('login');
-Route::post('/logout', 'EmployeeController@logout')->name('logout');
-
-
 // // Route::middleware('jwt.auth')->get('/product', 'ProductController@index')->name('api-product.index');
 
-// Route::group(['middleware' => 'auth:api'], function() {
     Route::resources([
         'products' => 'ProductController',
         'employees' => 'EmployeeController',
@@ -33,11 +27,14 @@ Route::post('/logout', 'EmployeeController@logout')->name('logout');
         'orderforms' => 'OrderFormController',
         'applicationforms' => 'ApplicationFormController',
         'stores' => 'StoreController',
-        // 'auth' => "AuthController",
         ]);
         
         Route::get('stores/products/{id}','StoreController@products');
         Route::get('products/orderform/{id}','ProductController@orderform');
         Route::get('stores/employees/{id}','StoreController@employees');
         Route::get('stores/deliverynotes/{id}','StoreController@deliverynotes');
-// });
+
+        Route::post('deliverynotes/add','DeliveryNoteController@add');
+
+        Route::post('employees/login','EmployeeController@login');
+        Route::post('employees/logout','EmployeeController@logout');
