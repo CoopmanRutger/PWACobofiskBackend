@@ -63,26 +63,25 @@ class EmployeeController extends Controller
         //
     }
 
-    public function login(Request $request, Response $response) {
+    public function login(Request $request) {
 
-        echo $request;
+        $username = $request->input("username");
+        $password = $request->input("password");
 
-        // $username = $request->input("username");
-        // $password = $request->input("password");
-
-        // if ($username != "" && $password != ""){
-
-        //     $employee = Employee::where('username', '=', $username)->first();
+        if ($username != "" && $password != ""){
+            $employee = Employee::where('username', '=', $username)->first();
             
-        //     if ($employee->password == $password) {
-        //         $response = $employee->id
-        //         return $response;
-        //     }
-        // }
-        // $response = 0;
-        // return $response;
+            if ($employee->password == $password) {
+                return response($employee->storeId, 200)
+                ->header('Content-Type', 'text/plain');
+            }
+        }
+        return response("0", 200)
+        ->header('Content-Type', 'text/plain');
     }
-    
+
+
+
     
     public function logout(Request $request)
     {
