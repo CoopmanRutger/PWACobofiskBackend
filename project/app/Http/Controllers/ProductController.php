@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        echo $data = Product::all();
+        return $data = Product::all();
     }
 
     /**
@@ -34,7 +35,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+
+
+        $product->id = $request->input("id");
+        $product->amount = $request->input("amount");
+        $product->storeId = $request->input("storeId");
+
+        $product->save();
     }
 
     /**
@@ -45,7 +53,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        echo $data = Product::findOrFail($id);
+        return Product::findOrFail($id);
     }
 
     /**
@@ -68,7 +76,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $choice = $request->input("choice");
+        $amount = $request->input("amount");
+        $productAmount = $product->amountStock;
+
+        if ($choice === 'Add' && $amount > 0) {
+            $product->amountStock = $productAmount + $amount;
+        }
+        if ($choice === 'Del' && $amount > 0) {
+            $product->amountStock = $productAmount - $amount;
+        }
+        $product->save();
+
     }
 
     /**
@@ -80,5 +101,13 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function orderform($id)
+    {
+        return DB::table('products')
+            ->join('orderForms','orderForms.productId','=','products.id')
+            ->where('orderForms.storeId', $id)
+            ->get();
     }
 }

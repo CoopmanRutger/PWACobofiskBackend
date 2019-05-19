@@ -13,30 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-// Route::middleware('jwt.auth')->get('/product', 'ProductController@index')->name('api-product.index');
-Route::get('/product', 'ProductController@index')->name('api-product.index');
-Route::get('/employee', 'EmployeeController@index')->name('api-employee.index');
-Route::middleware('jwt.auth')->get('/deliveryNote', 'DeliveryNoteController@index')->name('api-deliveryNote.index');
-Route::middleware('jwt.auth')->get('/orderForm', 'OrderFormController@index')->name('api-orderForm.index');
-Route::middleware('jwt.auth')->get('/applicationForm', 'ApplicationFormController@index')->name('api-applicationForm.index');
-Route::get('/api', 'ProductController@index')->name('api-product.index');
-
-// -- jwt auth
-Route::post('/register', 'AuthController@register')->name('register');
-Route::post('/login', 'AuthController@login')->name('login');
-Route::post('/logout', 'AuthController@logout')->name('logout');
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
+// // Route::middleware('jwt.auth')->get('/product', 'ProductController@index')->name('api-product.index');
 
-// Route::resources([
-//     'product' => 'ProductController',
-//     'employee' => 'EmployeeController',
-//     'deliveryNote' => 'DeliveryNoteController',
-//     'orderForm' => 'OrderFormController',
-//     'applicationForm' => 'ApplicationFormController',
-//     // 'auth' => "AuthController",
-//     ]);
+    Route::resources([
+        'products' => 'ProductController',
+        'employees' => 'EmployeeController',
+        'deliverynotes' => 'DeliveryNoteController',
+        'orderforms' => 'OrderFormController',
+        'applicationforms' => 'ApplicationFormController',
+        'stores' => 'StoreController',
+        ]);
+        
+        Route::get('stores/products/{id}','StoreController@products');
+        Route::get('products/orderform/{id}','ProductController@orderform');
+        Route::get('stores/employees/{id}','StoreController@employees');
+        Route::get('stores/deliverynotes/{id}','StoreController@deliverynotes');
+
+        Route::post('deliverynotes/add','DeliveryNoteController@add');
+
+        Route::post('employees/login','EmployeeController@login');
+        Route::post('employees/logout','EmployeeController@logout');

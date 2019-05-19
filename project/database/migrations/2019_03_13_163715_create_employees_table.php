@@ -15,12 +15,16 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('storeID');
+            $table->integer('storeId');
             $table->string('name');   
             $table->integer('age');
-            $table->string('function');   
+            $table->string('duty');   
             $table->string('username');   
-            $table->string('password');   
+            $table->string('password');
+            // $table->string('api_token', 80)->after('password')
+            // ->unique()
+            // ->nullable()
+            // ->default(null);
             $table->timestamps();
         });
     }

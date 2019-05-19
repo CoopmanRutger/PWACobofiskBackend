@@ -2,58 +2,45 @@
 
 namespace App\Http\Controllers;
 use App\Employee;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        echo $data3 = Employee::all();
+        return Employee::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $storeId = $request->input('storeId'); 
+        $name = $request->input('name');
+        $age = $request->input('age');
+        $duty = $request->input('duty');
+        $username = $request->input('name');
+        $password = $request->input('password');
+
+        Employee::Create([
+            'storeId' => $storeId,
+            'name' => $name,
+            'age' => $age,
+            'duty' =>  $duty,
+            'username' => $username . rand(1,50),
+            'password' => $password,
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        echo $data = Employee::findOrFail($id);
+        return Employee::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -71,14 +58,33 @@ class EmployeeController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request) {
+
+        $username = $request->input("username");
+        $password = $request->input("password");
+
+        if ($username != "" && $password != ""){
+            $employee = Employee::where('username', '=', $username)->first();
+            
+            if ($employee->password == $password) {
+                return response($employee->storeId, 200)
+                ->header('Content-Type', 'text/plain');
+            }
+        }
+        return response("0", 200)
+        ->header('Content-Type', 'text/plain');
+    }
+
+
+
+    
+    public function logout(Request $request)
+    {
+        return null;
     }
 }

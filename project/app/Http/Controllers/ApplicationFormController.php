@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ApplicationForm;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ApplicationFormController extends Controller
@@ -14,17 +15,7 @@ class ApplicationFormController extends Controller
      */
     public function index()
     {
-        echo $data4 = ApplicationForm::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ApplicationForm::all();
     }
 
     /**
@@ -35,7 +26,19 @@ class ApplicationFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //for ke?
+        $applicationForm = new ApplicationForm;
+
+        // $applicationForm->storeId =  $request->input("storeId"),
+        // $applicationForm->status =  $request->input("status"),
+        // $applicationForm->reason =  $request->input("reason"),
+        // $applicationForm->extra = $request->input("extra"),
+        // $applicationForm->status = "In aanvraag",
+        // $applicationForm->productId = $request->input("productId"),
+        // $applicationForm->amount = $request->input("amount"),
+        // $applicationForm->employeeId = $request->input("employeeId"),
+
+        $applicationForm->save();
     }
 
     /**
@@ -46,7 +49,7 @@ class ApplicationFormController extends Controller
      */
     public function show($id)
     {
-        echo $data = ApplicationForm::findOrFail($id);
+        return DB::table('applicationForms')->where('storeId', $id)->get();
     }
 
     /**

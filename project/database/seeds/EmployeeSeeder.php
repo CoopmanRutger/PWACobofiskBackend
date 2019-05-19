@@ -12,7 +12,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 10; $i++) { 
+        for($i = 1; $i <= 50; $i++) { 
             $function = array("standaard", "manager", "store manager", "information manager", "salesman", "Analist", "CEO");
             $rand_function = array_rand($function, 2);
             
@@ -20,10 +20,10 @@ class EmployeeSeeder extends Seeder
             $rand_choice = array_rand($choice, 2);
         
             Employee::Create([
-                'storeID' => rand(0,50),
+                'storeId' => rand(1,5),
                 'name' => $choice[$rand_choice[0]],
-                'age' => rand(0,50),
-                'function' =>  $function[$rand_function[0]],
+                'age' => rand(18,65),
+                'duty' =>  $function[$rand_function[0]],
                 'username' => $choice[$rand_choice[0]],
                 'password' => 'password',
                 ]);
