@@ -16,7 +16,7 @@ class OrderFormSeeder extends Seeder
             $rand_status = array_rand($status, 2);
             
             OrderForm::Create([
-                'storeId' => rand(0,5),
+                'storeId' => rand(1,5),
                 'status' =>  $status[$rand_status[0]],
                 'extra' => Str::random(30),
                 'productId' => rand(0,50),

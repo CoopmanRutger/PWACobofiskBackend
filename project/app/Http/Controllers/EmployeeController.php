@@ -7,32 +7,16 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return Employee::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $storeId = $request->input('storeId'); 
@@ -52,23 +36,11 @@ class EmployeeController extends Controller
             ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return Employee::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -86,14 +58,33 @@ class EmployeeController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request) {
+
+        $username = $request->input("username");
+        $password = $request->input("password");
+
+        if ($username != "" && $password != ""){
+            $employee = Employee::where('username', '=', $username)->first();
+            
+            if ($employee->password == $password) {
+                return response($employee->storeId, 200)
+                ->header('Content-Type', 'text/plain');
+            }
+        }
+        return response("0", 200)
+        ->header('Content-Type', 'text/plain');
+    }
+
+
+
+    
+    public function logout(Request $request)
+    {
+        return null;
     }
 }

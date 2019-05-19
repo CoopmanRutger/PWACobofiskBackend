@@ -76,16 +76,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $product = Product::find($id);
 
-        $product = store($id);
+        $choice = $request->input("choice");
+        $amount = $request->input("amount");
+        $productAmount = $product->amountStock;
 
-        $product->id = $request->input("id");
-        $product->amount = $request->input("amount");
-        $product->storeId = $request->input("storeId");
-
+        if ($choice === 'Add' && $amount > 0) {
+            $product->amountStock = $productAmount + $amount;
+        }
+        if ($choice === 'Del' && $amount > 0) {
+            $product->amountStock = $productAmount - $amount;
+        }
         $product->save();
 
-        index();
     }
 
     /**
@@ -97,5 +101,13 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function orderform($id)
+    {
+        return DB::table('products')
+            ->join('orderForms','orderForms.productId','=','products.id')
+            ->where('orderForms.storeId', $id)
+            ->get();
     }
 }

@@ -50,9 +50,9 @@ class OrderFormController extends Controller
             'extra' => $extra,
             'productId' => $productId,
             'amount' => $amount,
-            ]);
-        }
+        ]);
     }
+
 
     /**
      * Display the specified resource.

@@ -20,7 +20,11 @@ class CreateEmployeesTable extends Migration
             $table->integer('age');
             $table->string('duty');   
             $table->string('username');   
-            $table->string('password');   
+            $table->string('password');
+            // $table->string('api_token', 80)->after('password')
+            // ->unique()
+            // ->nullable()
+            // ->default(null);
             $table->timestamps();
         });
     }
